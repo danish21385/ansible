@@ -1,0 +1,21 @@
+---
+- name: Manage packages with Ansible package module
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Ensure nginx is installed
+      package:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Ensure curl is installed and up-to-date
+      package:
+        name: curl
+        state: latest
+
+    - name: Remove httpd if installed
+      package:
+        name: httpd
+        state: absent
